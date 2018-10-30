@@ -12,6 +12,7 @@
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 		<?php wp_head(); ?>
@@ -23,10 +24,10 @@
 				<div class="container">
 					<div class="row justify-content-between logos-area">
 						<div class="col">
-							<a href="https://www.unam.mx/">
+							<a href="https://www.unam.mx/" target="_blank">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/logo_unam.png" alt="Logo" class="logo-img">
 							</a>
-							<a href="http://www.cuautitlan.unam.mx/">
+							<a href="http://www.cuautitlan.unam.mx/" target="_blank">
 								<img src="<?php echo get_template_directory_uri(); ?>/img/fesc.png" alt="Logo" class="logo-img">
 							</a>
 						</div>
@@ -37,15 +38,13 @@
 						</div>
 					</div>
 					<!-- nav -->
-					<nav class="nav row" role="navigation">
-						<?php html5blank_nav(); ?>
+					<nav class="row navbar navbar-expand-md navbar-light bg-faded">
+					   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs4navbar" aria-controls="bs4navbar" aria-expanded="false" aria-label="Toggle navigation">
+					     <span class="navbar-toggler-icon"></span>
+					   </button>
+					   	<?php menuPrincipal() ?>
 					</nav>
 					<!-- /nav -->
 				</div>
-			
-					
-
-					
-
 			</header>
 			<!-- /header -->

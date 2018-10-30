@@ -9,7 +9,25 @@
 	External Modules/Files
 \*------------------------------------*/
 
-// Load any external files you have here
+require get_template_directory() . '/bs4navwalker.php';
+
+register_nav_menu('top', 'top');
+
+function menuPrincipal(){
+       wp_nav_menu([
+     'menu'            => 'top',
+     'theme_location'  => 'top',
+     'container'       => 'div',
+     'container_id'    => 'bs4navbar',
+     'container_class' => 'collapse navbar-collapse',
+     'menu_id'         => false,
+     'menu_class'      => 'navbar-nav mr-auto',
+     'depth'           => 2,
+     'fallback_cb'     => 'bs4navwalker::fallback',
+     'walker'          => new bs4navwalker()
+   ]);
+}
+
 
 /*------------------------------------*\
 	Theme Support
@@ -62,30 +80,7 @@ if (function_exists('add_theme_support'))
 	Functions
 \*------------------------------------*/
 
-// HTML5 Blank navigation
-function html5blank_nav()
-{
-	wp_nav_menu(
-	array(
-		'theme_location'  => 'header-menu',
-		'menu'            => '',
-		'container'       => 'div',
-		'container_class' => 'menu-{menu slug}-container',
-		'container_id'    => '',
-		'menu_class'      => 'menu',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul>%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
-		)
-	);
-}
+
 
 // Load HTML5 Blank scripts (header.php)
 function html5blank_header_scripts()
