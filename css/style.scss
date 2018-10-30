@@ -1,0 +1,64 @@
+/* Break Potins (Media Queries) */
+$break-small: 375px;
+$break-large: 1320px;
+
+/* Colores */
+$dorado: #bb8800;
+
+body{
+	color: #fff;
+}
+img{
+	max-width: 100%;
+	height: auto;
+}
+header{
+	background: {
+		color: #5e5e5f
+	}
+	.container{
+		background: #3b4042;
+		.logos-area{
+			padding: 10px 0;
+			img{
+				@media screen and (max-width: $break-small) {
+					max-height: 45px;
+				}
+				@media screen and (max-width: $break-large) {
+					max-height: 95px;
+				}			
+			}
+			.logo-fesc{
+				text-align: right
+			}
+		}
+		.nav{
+			background:{
+				color: #1d3d6c;
+			}
+			.current_page_item{
+				color: #c5911e
+			}
+			ul {
+			    list-style-type: none;
+			    margin: 0;
+			    padding: 0;
+			    background-color: #2d4d71;
+				li {
+				    float: left;
+				    a{
+					    display: inline-block;
+					    color: white;
+					    text-align: center;
+					    padding: 15px;
+					    text-decoration: none;
+					}
+					:hover{
+						background-color: $dorado;
+					}
+				}
+			}
+		}
+	}
+	
+}
