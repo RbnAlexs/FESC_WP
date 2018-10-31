@@ -1,2 +1,11 @@
-body{color:#fff}img{max-width:100%;height:auto}header{background-color:#5e5e5f}header .container{background:#3b4042}header .container .logos-area{padding:10px 0}@media screen and (max-width: 375px){header .container .logos-area img{max-height:45px}}@media screen and (max-width: 1320px){header .container .logos-area img{max-height:95px}}header .container .logos-area .logo-fesc{text-align:right}header .container nav{background-color:#1d3d6c}header .container nav .current_page_item{background-color:#c5911e}header .container nav ul{list-style-type:none;margin:0;padding:0;background-color:#2d4d71}header .container nav ul li{float:left;padding:5px 15px}header .container nav ul li a{display:inline-block;color:white;text-align:center;text-decoration:none;color:#fff !important}header .container nav ul li :hover{background-color:#b80}
-/*# sourceMappingURL=style.css.map */
+/*
+Theme Name: Educon
+Theme URI: www.cuautitlan.unam.mx/educon/
+Author: Rubén Sánchez
+Author URI: https://github.com/RbnAlexs
+Description: Theme desarrollado para el departamaneto de Educación Continua de la FES Cuautitlán
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+@import url('css/style.css');

@@ -14,7 +14,7 @@ require get_template_directory() . '/bs4navwalker.php';
 register_nav_menu('top', 'top');
 
 function menuPrincipal(){
-       wp_nav_menu([
+     wp_nav_menu([
      'menu'            => 'top',
      'theme_location'  => 'top',
      'container'       => 'div',
@@ -27,6 +27,140 @@ function menuPrincipal(){
      'walker'          => new bs4navwalker()
    ]);
 }
+
+/*------------------------------------*\
+    Custom Post Type
+\*------------------------------------*/
+
+// Post Type Banners
+add_action( 'init', 'crear_post_type_banners', 0 );
+function crear_post_type_banners() {
+// Etiquetas para el Post Type
+    $labels = array(
+        'name'                => _x( 'Banners', 'Post Type General Name', 'banner-artist' ),
+        'singular_name'       => _x( 'Banner', 'Post Type Singular Name', 'banner-artist' ),
+        'menu_name'           => __( 'Banners', 'banner-artist' ),
+        'parent_item_colon'   => __( 'Banner Padre', 'banner-artist' ),
+        'all_items'           => __( 'Todos los Banners', 'banner-artist' ),
+        'view_item'           => __( 'Ver Banners', 'banner-artist' ),
+        'add_new_item'        => __( 'Agregar Nuevo Banner', 'banner-artist' ),
+        'add_new'             => __( 'Agregar Nuevo Banner', 'banner-artist' ),
+        'edit_item'           => __( 'Editar Banner', 'banner-artist' ),
+        'update_item'         => __( 'Actualizar Banner', 'banner-artist' ),
+        'search_items'        => __( 'Buscar Banner', 'banner-artist' ),
+        'not_found'           => __( 'No encontrado', 'banner-artist' ),
+        'not_found_in_trash'  => __( 'No encontrado en la papelera', 'banner-artist' ),
+    );
+
+// Otras opciones para el post type
+
+    $args = array(
+        'label'               => __( 'Banners', 'banner-artist' ),
+        'description'         => __( 'Próximos Banners', 'banner-artist' ),
+        'labels'              => $labels,
+        'supports'            => array( 'title', 'thumbnail', 'revisions'),
+        /* Un Post Type hierarchical es como las paginas y puede tener padres e hijos.
+        * Uno sin hierarchical es como los posts
+        */
+        'hierarchical'        => false,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 5,
+        'can_export'          => true,
+        'has_archive'         => true,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'page',
+    );
+    register_post_type( 'Banners', $args );
+}
+
+
+function add_custom_meta_boxes() {
+ 
+    // Define the custom attachment for posts
+    add_meta_box(
+        'wp_custom_attachment',
+        'Custom Attachment',
+        'wp_custom_attachment',
+        'post',
+        'side'
+    );
+     
+    // Define the custom attachment for pages
+    add_meta_box(
+        'wp_custom_attachment',
+        'Custom Attachment',
+        'wp_custom_attachment',
+        'page',
+        'side'
+    );
+ 
+} // end add_custom_meta_boxes
+add_action('add_meta_boxes', 'add_custom_meta_boxes');
+function wp_custom_attachment() {
+ 
+    wp_nonce_field(plugin_basename(__FILE__), 'wp_custom_attachment_nonce');
+     
+    $html = '<p class="description">';
+        $html .= 'Upload your PDF here.';
+    $html .= '</p>';
+    $html .= '<input type="file" id="wp_custom_attachment" name="wp_custom_attachment" value="" size="25" />';
+     
+    echo $html;
+ 
+} // end wp_custom_attachment
+
+add_action( 'init', 'crear_post_type_cursos', 0 );
+function crear_post_type_cursos() {
+// Etiquetas para el Post Type
+    $labels = array(
+        'name'                => _x( 'Cursos', 'Post Type General Name', 'cursos-artist' ),
+        'singular_name'       => _x( 'Cursos', 'Post Type Singular Name', 'cursos-artist' ),
+        'menu_name'           => __( 'Cursos', 'cursos-artist' ),
+        'parent_item_colon'   => __( 'cursos Padre', 'cursos-artist' ),
+        'all_items'           => __( 'Todos los cursos', 'cursos-artist' ),
+        'view_item'           => __( 'Ver cursos', 'cursos-artist' ),
+        'add_new_item'        => __( 'Agregar Nuevo cursos', 'cursos-artist' ),
+        'add_new'             => __( 'Agregar Nuevo cursos', 'cursos-artist' ),
+        'edit_item'           => __( 'Editar cursos', 'cursos-artist' ),
+        'update_item'         => __( 'Actualizar cursos', 'cursos-artist' ),
+        'search_items'        => __( 'Buscar cursos', 'cursos-artist' ),
+        'not_found'           => __( 'No encontrado', 'cursos-artist' ),
+        'not_found_in_trash'  => __( 'No encontrado en la papelera', 'cursos-artist' ),
+    );
+
+// Otras opciones para el post type
+
+    $args = array(
+        'label'               => __( 'cursos', 'cursos-artist' ),
+        'description'         => __( 'Próximos cursos', 'cursos-artist' ),
+        'labels'              => $labels,
+        'supports'            => array( 'title', 'thumbnail', 'revisions'),
+        /* Un Post Type hierarchical es como las paginas y puede tener padres e hijos.
+        * Uno sin hierarchical es como los posts
+        */
+        'hierarchical'        => false,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 5,
+        'can_export'          => true,
+        'has_archive'         => true,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'page',
+    );
+    register_post_type( 'cursos', $args );
+
+
+}
+
 
 
 /*------------------------------------*\
@@ -50,24 +184,7 @@ if (function_exists('add_theme_support'))
     add_image_size('small', 120, '', true); // Small Thumbnail
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
-    // Add Support for Custom Backgrounds - Uncomment below if you're going to use
-    /*add_theme_support('custom-background', array(
-	'default-color' => 'FFF',
-	'default-image' => get_template_directory_uri() . '/img/bg.jpg'
-    ));*/
-
-    // Add Support for Custom Header - Uncomment below if you're going to use
-    /*add_theme_support('custom-header', array(
-	'default-image'			=> get_template_directory_uri() . '/img/headers/default.jpg',
-	'header-text'			=> false,
-	'default-text-color'		=> '000',
-	'width'				=> 1000,
-	'height'			=> 198,
-	'random-default'		=> false,
-	'wp-head-callback'		=> $wphead_cb,
-	'admin-head-callback'		=> $adminhead_cb,
-	'admin-preview-callback'	=> $adminpreview_cb
-    ));*/
+   
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
